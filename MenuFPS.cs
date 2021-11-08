@@ -1,4 +1,3 @@
-﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +9,10 @@ using UnityEngine.UI;
 public class MenuFPS : MonoBehaviour
 {
     public Button buttonConnect;
+    public Button buttonPrivateRoom;
+    public InputField privateRoomName;
+    public Button buttonSelectRoom;
+    public InputField selectRoomName;
     public Text status;
 
     public void buttonConnectClicked()
@@ -21,11 +24,26 @@ public class MenuFPS : MonoBehaviour
         }
     }
 
+    public void buttonPrivateRoomClicked()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.CreateRoom(privateRoomName.text);
+            Debug.Log("Room Name: " + PhotonNetwork.CurrentRoom);
+        }
+    }
+
+    public void buttonSelectRoomClicked()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.JoinRoom(selectRoomName.text);
+        }
+    }
 
     IEnumerator Connecting(int time)
     {
         yield return new WaitForSeconds(time);
-        status.text = "Connecting...";
+        status.text = "Connected, create or select a room...";
     }
 }
-
