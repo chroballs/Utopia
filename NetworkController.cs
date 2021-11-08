@@ -29,7 +29,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        PhotonNetwork.JoinRandomRoom();
+        //PhotonNetwork.JoinRandomRoom();
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
